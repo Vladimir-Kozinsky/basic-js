@@ -28,6 +28,7 @@ function dateSample(sampleActivity) {
   let a = Math.log(MODERN_ACTIVITY / sampleActivity)
 
   return Math.ceil(a / k)
+  
 }
 
 module.exports = {
