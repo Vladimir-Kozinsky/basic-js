@@ -20,9 +20,12 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
+  constructor(flow) {
+    this.flow = flow === undefined ? true : flow;
+
+  }
   encrypt(message, key) {
-     throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    console.log(this.flow)
     if (message === undefined || key === undefined) { throw new Error("Incorrect arguments!") }
     const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     message = message.toUpperCase()
@@ -51,11 +54,12 @@ class VigenereCipheringMachine {
       resArr.push((c === undefined ? element : c))
     }
     keyArr.splice(message.length, keyArr.length - message.length + 1,)
-    return (this.isReverse === false ? resArr.reverse().join("") : resArr.join(''))
+    if (this.flow) {
+
+    }
+    return (!this.flow ? resArr.reverse().join("") : resArr.join(''))
   }
   decrypt(message, key) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
     if (message === undefined || key === undefined) { throw new Error("Incorrect arguments!") }
     const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     message = message.toUpperCase()
@@ -84,7 +88,7 @@ class VigenereCipheringMachine {
       resArr.push((c === undefined ? element : c))
     }
     keyArr.splice(message.length, keyArr.length - message.length + 1,)
-    return (this.isReverse === false ? resArr.reverse().join("") : resArr.join(''))
+    return (!this.flow ? resArr.reverse().join("") : resArr.join(''))
   }
 }
 
